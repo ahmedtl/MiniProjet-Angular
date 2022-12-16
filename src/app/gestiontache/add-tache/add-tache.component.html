@@ -1,0 +1,41 @@
+<h1>{{ action }} tache</h1>
+<form style="padding-left: 250" #f="ngForm">
+  <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
+      <label>Libelle</label>
+      <input type="text" name="libelle"
+      [(ngModel)]="tache.libelle"class="form-control"
+      required #p="ngModel">
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+        this field is required
+      </div>
+     <div *ngIf="p.hasError('minlength')">
+        minlength = 3 !
+     </div>
+     <div *ngIf="p.hasError('pattern')">
+       error pattern
+    </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Prix</label>
+      <input type="text" name="prixTache"
+      [(ngModel)]="tache.prixTache"class="form-control"
+      required #p="ngModel">
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+        this field is required
+      </div>
+     <div *ngIf="p.hasError('minlength')">
+        minlength = 3 !
+     </div>
+     <div *ngIf="p.hasError('pattern')">
+       error pattern
+    </div>
+    </div>
+  </div>
+  <br />
+  <button class="btn btn-success" (click)="saveTache()" [disabled]="f.invalid">
+    save
+  </button>
+  &nbsp;
+  <button type="reset" class="btn btn-warning">reset</button>
+</form>

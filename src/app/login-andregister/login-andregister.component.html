@@ -1,0 +1,110 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="style">
+	<div class="container register">
+		<div class="row">
+			<div class="col-md-3 register-left">
+				<img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+				<h3>Kaddem Dashboard</h3>
+				<p>Welcome!</p>
+			</div>
+			<div class="col-md-9 register-right">
+				<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+							aria-controls="home" aria-selected="true">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+							aria-controls="profile" aria-selected="false">Register</a>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+						<h3 class="register-heading">Login</h3>
+						<div class="row register-form">
+							<div class="col-mb-3">
+								<div class="form-group">
+									<input type="text" ngModel #userName="ngModel" name="userName" id="userName"
+                                    placeholder="Enter your username" class="form-control mb-3"
+                                    [ngClass]="{ 'is-invalid': userName.invalid && userName.touched }" required>
+								</div>
+								<div class="alert alert-danger" *ngIf="userName.invalid && userName.touched ">usermame
+									required.</div>
+								<div class="form-group">
+									<input type="password" ngModel #userPassword="ngModel" name="userPassword"
+                                    id="userPassword" placeholder="Enter your password" class="form-control mb-3"
+                                    [ngClass]="{ 'is-invalid error': userPassword.invalid && userPassword.touched }"
+                                    required>
+								</div>
+								<div class="alert alert-danger" *ngIf="userPassword.invalid && userPassword.touched ">
+									Password required.</div>
+									<ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+										<div class="alert-body">
+											<p>Username or password is incorret</p>
+										</div>
+									</ngb-alert>
+							</div>
+							
+							<input type="submit" class="btnRegister" value="Submit" />
+
+						</div>
+					</form>
+					</div>
+					<div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						<form #registerForm="ngForm" (ngSubmit)="register(registerForm)" #f="ngForm">
+						<h3 class="register-heading">Register</h3>
+						<div class="row register-form">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" ngModel name="userName" id="userName"
+                                    placeholder="Enter your username" class="form-control mb-3" #u="ngModel" required minlength="3">
+                                    <div class="alert alert-danger" *ngIf="u.invalid && u.touched">
+                                        <div *ngIf="u.hasError('required')">this field is required</div>
+                                        <div *ngIf="u.hasError('minlength')">minlength = 3!</div>
+                                    </div>
+								</div>
+								<div class="form-group">
+									<input type="text" ngModel name="userFirstName" id="userFirstName"
+                                    placeholder="Enter your first name" class="form-control mb-3" required minlength="3" pattern="[a-zA-Z]{3,12}$"
+                                    #t="ngModel">
+                                   <div class="alert alert-danger" *ngIf="t.invalid && t.touched">
+                                       <div *ngIf="t.hasError('required')">this field is required</div>
+                                       <div *ngIf="t.hasError('minlength')">minlength = 3!</div>
+                                       <div *ngIf="t.hasError('pattern')">error pattern</div>
+                                  </div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" ngModel name="userLastName" id="userLastName"
+                                    placeholder="Enter your last name" class="form-control mb-3" required minlength="3" pattern="[a-zA-Z]{3,12}$"
+                                    #p="ngModel">
+                                   <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+                                       <div *ngIf="p.hasError('required')">this field is required</div>
+                                       <div *ngIf="p.hasError('minlength')">minlength = 3!</div>
+                                       <div *ngIf="p.hasError('pattern')">error pattern</div>
+                                  </div>
+								</div>
+								<div class="form-group">
+									<input type="password" ngModel name="userPassword" id="userPassword"
+                                    placeholder="Enter your password" class="form-control mb-3" #s="ngModel" required minlength="3">
+                                    <div class="alert alert-danger" *ngIf="s.invalid && s.touched">
+                                        <div *ngIf="s.hasError('required')">this field is required</div>
+										<div *ngIf="s.hasError('minlength')">minlength = 3!</div>
+                                    </div>
+								</div>
+								<input type="submit" class="btnRegister" value="Register" [disabled]="f.invalid" />
+							</div>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

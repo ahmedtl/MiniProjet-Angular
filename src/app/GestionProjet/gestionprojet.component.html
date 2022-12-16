@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel" >Add Tache</h5>
+
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal1.close('Close click') "
+  ></button>
+</div>
+<div>
+   <div mdbDropdown class="btn-group">
+<div class="form-group">
+  <label  [ngStyle]="{'color': 'red'}" >Tache</label>
+    <select class="form-control" required  [(ngModel)]="tache"   #libelleTache ="ngModel" name="libelleTache" >
+      <option [value]="tache.libelle" *ngFor="let tache of tacheList" [ngValue]="tache">{{tache.libelle}}</option>
+    </select>
+  
+    <div
+  *ngIf="libelleTache.invalid && (libelleTache.dirty || libelleTache.touched)"
+class="alert">
+    </div>
+    
+  </div>
+  <div class="form-group">
+      <label  [ngStyle]="{'color': 'red'}" >Projet</label>
+        <select class="form-control" required  [(ngModel)]="projet" (ngModelChange)="Show_taches()" #nomProjet ="ngModel" name="nomProjet" [ngClass]="'first second'">
+          <option *ngFor="let projet of projetList" [ngValue]="projet">{{projet.nomProjet}}</option>
+        </select>
+        <!-- <h2 [hidden]="list_tache.length==0">List tache de </h2> -->
+        <div [(ngModel)]="list_tache">
+          <p *ngFor="let tch of list_tache">{{tch}}</p>
+        </div>
+        <div
+      *ngIf="nomProjet.invalid && (nomProjet.dirty || nomProjet.touched)"
+  class="alert">
+        </div>
+      </div>
+
+</div>
+
+</div>
+<div>
+<div class="form-group" >
+   <button type="button" class="btn btn-secondary" (click)="addtache(tache,projet)" (click)="activeModal1.close('Close click')" >
+      Add
+    </button>
+</div>
+<div class="modal-footer">
+</div>   
+</div>

@@ -1,0 +1,50 @@
+<div id="content" class="p-3">
+    <h1>Details list</h1>
+    <div class="d-flex justify-content-between mb-3">
+        <div>
+            <input [(ngModel)]="search" class="mysearch" placeholder="Search...">
+        </div>
+        <div>
+            <a (click)="goToAdd()" class="btn btn-sm btn-success text-white mr-3">
+                Add detail
+            </a>
+            
+            <a class="btn btn-sm btn-warning">
+                Export PDF
+            </a>
+        </div>
+    </div>
+    <table class="table" #content>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th style="width: 18rem;">Detail</th>
+                <th style="width: 7rem !important;" *ngIf="userService.roleMatch(['Admin'])">action</th>
+            </tr>
+        </thead>
+        <tbody id="content">
+
+            <tr *ngFor="let t of filteredDetails" #content>
+
+                <td>{{t.id}}</td>
+
+                <td><span style="cursor: pointer; font-weight: 600; color: #1d1d1d;" (click)="goToShowDetail(t.id)">{{t.name}}</span></td>
+
+                <td>{{t.detail}}</td>
+                <td *ngIf="userService.roleMatch(['Admin'])">
+                    <button class="btn btn-sm btn-danger" (click)="goToDelete(t.id)">
+                        Delete
+                    </button>
+                    <a class="btn btn-sm btn-info text-white" (click)="goToUpdate(t.id)">
+                        Update
+                    </a>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+</div>

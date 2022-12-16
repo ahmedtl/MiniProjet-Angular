@@ -1,0 +1,45 @@
+<!--<app-header></app-header>-->
+<div id="style">
+<div class="container mt-1">
+    <div class="" style="padding: 20px;">
+        <form [formGroup]="updateForm" (ngSubmit)="update(updateForm)">
+            <div class="form-group">
+                <label for="userName">UserName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  formControlName="userName"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="account-e-mail">Last Name</label>
+                <input
+                  type="text"
+                  formControlName="userLastName"
+                  class="form-control"
+                  id="userLastName"
+                  
+                />
+              </div>
+            <div class="form-group">
+                <label for="account-name">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userFirstName"
+                  formControlName="userFirstName"
+                />
+              </div>
+            <button type="submit" class="btn btn-success" >
+                save changes
+            </button>
+            &nbsp;
+            <button type="reset" class="btn btn-warning">
+                Annuler
+            </button>
+        </form>
+    </div>
+</div>
+</div>

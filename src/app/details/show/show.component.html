@@ -1,0 +1,17 @@
+<div id="content" class="p-3">
+    <h1>Show detail</h1>
+    <a [routerLink]="['/teams/details']" class="btn btn-sm btn-warning mb-3">
+        Details list
+    </a>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title
+            ">Showing detail:</h5>
+            <p class="card-text">
+                <strong>ID:</strong> {{detail?.id}}<br>
+                <strong>Name:</strong> {{detail?.name}}<br>
+                <strong>Detail:</strong> {{detail?.detail}}
+            </p>
+        </div>  
+    </div>
+</div>

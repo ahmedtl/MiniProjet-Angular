@@ -1,0 +1,67 @@
+<div id="content" > 
+  <h1>List Department</h1>
+
+<!--   <input
+  type="number"
+  aria-labelledby="temperature low"
+  #myInput
+  [(ngModel)]="idDepart"
+  (input)="recherche(idDepart)"
+/> -->
+
+
+<a class="btn btn-sm btn-warning" (click)="toadd()">
+    Add Department  
+</a>
+  <table class="table" #content>
+      <thead>
+          <tr>
+             <th>ID</th>
+              <th> Department</th>
+              <th>Code</th>
+              <th>type</th>
+           
+              <th>description</th>
+              <th>Universite</th>
+       
+              <th *ngIf="userService.roleMatch(['Admin'])">action</th>
+          </tr>
+      </thead>
+      <tbody id="content" >
+    
+          <tr *ngFor="let u of listDepartment " #content>
+    
+              <td>{{u?.idDepartement}}</td>
+              
+              <td>{{u?.nomDepartement }}</td>
+              <td >{{u?.code }}</td>
+             
+              <td [ngStyle]="{color: u.type=='Development' ? '#71BC75' : '#550F00' }"> {{u?.type}} </td>
+              
+             
+              <td > {{u?.description}}</td>
+             
+                 
+              <td > {{u?.universite?.nomUniversite}}</td>
+              <td *ngIf="userService.roleMatch(['Admin'])">
+                  <button class="btn btn-sm btn-danger" (click)="deletedepartment(u.idDepartement)" >
+                      delete
+                  </button>
+                  &nbsp; 
+                  <a class="btn btn-sm btn-warning" (click)="makePDF()">
+                    PDF  
+                </a>
+                <a class="btn btn-sm btn-warning" (click)="updatedepartment(u.idDepartement)">
+                   Update 
+                </a>
+               
+                &nbsp;
+              </td>
+          </tr>
+      </tbody>
+
+      
+  </table>
+ 
+  </div>
+  

@@ -1,0 +1,10 @@
+.detail {
+    padding: .5rem;
+    background: #ebca72;
+    color: #313131;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    outline: none;
+    width: fit-content;
+}

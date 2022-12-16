@@ -1,0 +1,76 @@
+<div id="content" #content>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>List Projets</h1>
+          </div>
+          <div class="col">
+            <div class="row">
+                <div class="col">
+                    Recherche
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" (change)="setSearch($event)">
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary" (click)="FindbyNom()">Search</button>
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-dark" (click)="openTache()">Add Tache</button>
+              </div>
+        </div>
+            
+            
+          </div>
+        </div>
+      </div>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nom Projet</th>
+          <th>Theme</th>
+          <th>Date Debut</th>
+          <th>Date Fin</th>
+          <th>Montant</th>
+          <th *ngIf="userService.roleMatch(['Admin'])">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor = "let projet of projetList |paginate
+        : {
+          itemsPerPage:4,
+          currentPage:pagination,
+          totalItems: allTaches
+        } ">
+        <td scope="row">{{projet.idProjet }}</td>
+          <td>{{ projet.nomProjet }}</td>
+          <td>{{ projet.theme }}</td>
+          <td>{{ projet.dateDeb }}</td>
+          <td>{{ projet.dateFin }}</td>
+          <td>{{ projet.prix }}</td>
+              <td *ngIf="userService.roleMatch(['Admin'])">
+                <button class="btn btn-sm btn-danger" (click)="deleteProjet(projet.idProjet)" >
+                    delete
+                </button>
+                &nbsp;
+                <a class="btn btn-sm btn-warning" (click)="updateProjet(projet.idProjet)" >
+                    update  
+                </a>
+                <a class="btn btn-sm btn-success" (click)="open(projet.nomProjet)"  >
+                  As Taches
+              </a>
+              <a class="btn btn-sm btn-info" (click)="getPrix(projet.nomProjet)"  >
+                Get Price
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+      (pageChange)="renderPage($event)"></pagination-controls>
+    </div>
+  </div>
+  

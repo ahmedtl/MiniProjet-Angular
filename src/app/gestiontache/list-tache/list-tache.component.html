@@ -1,0 +1,63 @@
+<div id="content" #content>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div>
+            <button class="btn btn-sm btn-dark" (click)='triASC()'>Trie Up</button>
+            <button class="btn btn-sm btn-dark" (click)='triDESC()'>Trie Down</button>
+          </div>
+          <h1>List Taches</h1>
+        </div>
+        <div class="col">
+          <div class="row">
+              <div class="col">
+                  Recherche
+              </div>
+              <div class="col">
+                  <input type="text" [(ngModel)]="searchText">
+              <div class="col">
+                  <button type="button" class="btn btn-primary" >Search</button>
+              </div>
+      </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  
+  <table [(ngModel)]="tacheList" class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Libelle</th>
+        <th>Prix</th>
+        <th *ngIf="userService.roleMatch(['Admin'])">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor = "let tache of tacheList |paginate
+        : {
+          itemsPerPage:6,
+          currentPage:pagination,
+          totalItems: allTaches
+        } |filter: searchText">
+        <td scope="row">{{tache.idTache }}</td>
+        <td>{{ tache.libelle}}</td>
+        <td>{{ tache.prixTache}}</td>
+            <td *ngIf="userService.roleMatch(['Admin'])">
+              <button class="btn btn-sm btn-danger" (click)="deleteTache(tache.idTache)" >
+                  delete
+              </button>
+              &nbsp;
+              <a class="btn btn-sm btn-warning" (click)="updateTache(tache.idTache)" >
+                  update  
+              </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+    (pageChange)="renderPage($event)"></pagination-controls>
+  </div>
+</div>

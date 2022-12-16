@@ -1,0 +1,24 @@
+<div id="content" class="p-3">
+    <h1>Add team</h1>
+    <a [routerLink]="['/teams']" class="btn btn-sm btn-warning mb-3">
+        Teams list
+    </a>
+    <form [formGroup]="teamForm" (ngSubmit)="add()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" placeholder="Name..." formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input class="form-control" id="desc" placeholder="Description..." formControlName="desc">
+        </div>
+        <div *ngIf="details" class="form-group">
+            <label for="detail">Detail</label>
+            <select class="form-control" id="detail" formControlName="detail" placeholder="Detail...">
+                <option *ngFor="let detail of details" [value]="detail.id">{{detail.name}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a [routerLink]="['/teams']" class="btn btn-warning">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,65 @@
+<div id="content" #content> 
+
+  <h1>List Universite</h1>
+ 
+  <a class="btn btn-sm btn-warning" (click)="toadd()">
+    Add Universite </a>
+<select (change)="onTableSizeChange($event)">
+    <option *ngFor="let size of tableSizes">
+        {{size}}
+    </option>
+      </select>
+    
+  <table class="table">
+      <thead>
+          <tr>
+              <th>id</th>
+              <th>Nom Universite</th>
+              <th>Adresse</th>
+              <th>Image</th>
+           
+              <th *ngIf="userService.roleMatch(['Admin'])">action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let u of listUniversites | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    "
+  >
+
+              <td>{{u.idUniversite}}</td>
+              <td  >{{u.nomUniversite }}</td>
+              <td  [ngStyle]="{color: u.adresse=='Tunis' ? '#71BC75' : '#550F00' }"> {{u.adresse}}</td>
+              <td> <img src="{{u.image}}" style="width: 54px;height: 20px;" alt="">
+              </td>
+          
+              <td *ngIf="userService.roleMatch(['Admin'])">
+                  <button class="btn btn-sm btn-danger" (click)="deleteUniv(u.idUniversite)" >
+                      delete
+                  </button>
+                  &nbsp;
+                  <a class="btn btn-sm btn-warning" (click)="updateUniversite(u.idUniversite)">
+                      update  
+                  </a>
+                  &nbsp;
+                  
+              </td>
+            
+          </tr>
+          
+      </tbody>
+  </table>
+  <div>
+    <pagination-controls
+      previousLabel="prev"
+      nextLabel="next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+  </div>

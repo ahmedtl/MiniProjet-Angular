@@ -1,0 +1,35 @@
+<h3>Create Tache</h3>  
+<div class="row">  
+  <div class="col-sm-4"></div>  
+  <div class="col-sm-4" >  
+    <div [hidden]="submitted" style="width: 200px;">  
+      <form [formGroup]="Tachesaveform" #save (ngSubmit)="saveTache()">   
+          <div class="form-group">  
+              <label for="name">Libelle</label>  
+              <input type="text" class="form-control"  formControlName="libelle" [(ngModel)]="libelle" data-toggle="tooltip"   
+                 data-placement="right" title="Enter libelle " >  
+                 <div class="alert alert-danger" *ngIf="libelle.errors">
+                  <div *ngIf="libelle.errors.required">champ obligatoire</div>
+                  <div *ngIf="libelle.errors.pattern">pattern non respecte</div>
+                        </div>
+          </div>  
+          <div class="form-group">  
+              <label for="name">Prix</label>  
+              <input type="text" class="form-control" formControlName="prixTache"   [(ngModel)]="prixTache"
+                data-toggle="tooltip" data-placement="right" title="Enter code rayon">  
+                <div class="alert alert-danger" *ngIf="prixTache.errors">
+                  <div *ngIf="prixTache.errors.required">champ obligatoire</div>
+                  <div *ngIf="prixTache.errors.pattern">pattern non respecte</div>
+                        </div> 
+          </div>  
+          <button type="submit" class="btn btn-success"     (click)="activeModal1.close('Close click') ">Submit</button>  
+      </form>  
+  </div>  
+  </div>  
+  <div class="col-sm-4"></div>  
+</div>  
+<div class="row">  
+  <div class="col-sm-4"></div>  
+  
+  <div class="col-sm-4"></div>  
+</div>  

@@ -1,0 +1,46 @@
+<!--<app-header></app-header>-->
+
+<div class="container mt-1">
+    <div class="" style="padding: 20px;">
+        <form [formGroup]="PForm" (ngSubmit)="add()">
+            <div class="form-group">
+                <label>UserName</label>
+                <input type="text" formControlName="UserName" name="UserName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" formControlName="nomE" name="nomE" class="form-control">
+                <div class="alert alert-danger"
+                    *ngIf="PForm.controls['nomE'].invalid && PForm.controls['nomE'].touched">
+                    <div *ngIf="PForm.controls['nomE'].hasError('required')"> this field is required</div>
+                    <div *ngIf="PForm.controls['nomE'].hasError('minlength')"> minlength=3 ! </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Prenom</label>
+                <input type="text" formControlName="prenomE" name="prenomE" class="form-control">
+                <div class="alert alert-danger"
+                    *ngIf="PForm.controls['prenomE'].invalid && PForm.controls['prenomE'].touched ">
+                    <div *ngIf="PForm.controls['prenomE'].hasError('required')"> this field is required</div>
+                    <div *ngIf="PForm.controls['prenomE'].hasError('minlength')"> minlength=3 ! </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Option</label>
+                <select formControlName="options" name="option" class="form-control" >
+                    <option value="GAMIX">GAMIX</option>
+                    <option value="SE">SE</option>
+                    <option value="SIM">SIM</option>
+                    <option value="NIDS">NIDS</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="PForm.invalid">
+                save
+            </button>
+            &nbsp;
+            <button type="reset" class="btn btn-warning">
+                Annuler
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<!--<app-header></app-header>
+<div id="content" #content> 
+    <h1>List etudiants</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Option</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiantList">
+                <td>{{etudiant.idEtudiant}}</td>
+                <td>{{etudiant.nomE}}</td>
+                <td> {{etudiant.prenomE}}
+                </td>
+                <td [ngStyle]="{color :'#71BC75' }"> {{etudiant.options}}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="delete(etudiant.idEtudiant)" >
+                        Delete
+                    </button>
+                    &nbsp;
+                    <a class="btn btn-sm btn-warning" [routerLink]="['/etudiants/updateEtudiant',etudiant.idEtudiant]">
+                        Update  
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+-->
+<!--<app-header></app-header>-->
+<div id="content" #content> 
+    <h1>List etudiants</h1>
+    <div id="formsearch" class="form-group">
+        <input
+          id="search"
+          placeholder="search"
+          [(ngModel)]="searchText"
+          type="text"
+          name="search"
+          class="form-control "
+          (click)="transferData()"
+        /></div>
+   <!---- <app-search  (searchTextChanged)="onSearchTextEntered($event)"></app-search>-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accountList | filter: searchText">
+                <td>{{account.userName}}</td>
+                <td>{{account.userLastName}}</td>
+                <td> {{account.userFirstName}}
+                </td>
+                <td *ngIf=" account.role[0].roleName =='User'" [ngStyle]="{color :'#71BC75' }">Etudiant</td>
+                <td *ngIf=" account.role[0].roleName =='Admin'" [ngStyle]="{color :'#FF0000' }">Admin</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="deleteAccount(account.userName)" >
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

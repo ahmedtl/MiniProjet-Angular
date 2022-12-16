@@ -1,0 +1,59 @@
+
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container-fluid p-0 m-0" >
+  <div class="row no-gutters">
+    <div class="col-9" style="height: 700px;" >
+      <div class="position-absolute p-5 bg-white m-5 shadow-lg map-box2" >
+        <h3 class="text-muted">Contract {{ contrat.idContrat }}</h3>
+        <div class="mt-4" id="content" #content>
+          <address>
+            <strong class="text-muted">Start date</strong><br />
+            {{ contrat.dateDebutContrat }}<br />
+          </address>
+          <address>
+            <strong class="text-muted">End Date</strong><br />
+            {{ contrat.dateFinContrat }}
+          </address>
+          <address>
+            <strong class="text-muted">Speciality</strong><br />
+            {{ contrat.specialite }}
+          </address>
+          <address>
+            <strong class="text-muted">Decription</strong><br />
+            {{ contrat.descriptionContrat }}
+          </address>
+          <address class="mb-5">
+            <strong class="text-muted">Amount</strong><br />
+            <a href="mailto:#" class="text-secondary">
+              {{ contrat.montantContrat }}
+            </a>
+          </address>
+          
+        </div>
+        <a style="padding-left: 230px;" (click)="makePDF()">
+          <img
+            style="cursor: pointer"
+            src="../../../assets/img/pdf.png"
+            alt=""
+            width="30"
+            height="30"
+          /> 
+        </a>
+      </div>
+      <div
+        class="embed-responsive embed-responsive-16by9"
+        style="height: 560px !important"
+      ></div>
+    </div>
+  </div>
+  
+ 
+</div>

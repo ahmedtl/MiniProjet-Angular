@@ -1,0 +1,28 @@
+<div id="content" class="p-3">
+  <h1>Delete team</h1>
+  <a [routerLink]="['/teams']" class="btn btn-sm btn-warning mb-3">
+    List teams
+  </a>
+
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title
+            ">Are you sure you want to delete this team?</h5>
+      <p class="card-text">
+        <strong>ID:</strong> {{team?.id}}<br>
+        <strong>Name:</strong> {{team?.name}}<br>
+        <strong>Description:</strong> {{team?.description}}
+        <span *ngIf="team.detail" class="d-block"><strong>Detail:</strong> <span
+            class="detail ml-2">{{team?.detail?.name}}</span></span>
+      </p>
+      <a (click)="delete()" class="btn btn-sm btn-danger text-white">
+        Delete
+      </a>
+      <a [routerLink]="['/teams']" class="btn btn-sm btn-warning">
+        Cancel
+      </a>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,70 @@
+<h1>{{ action }} projet</h1>
+<form style="padding-left: 250" #f="ngForm">
+  <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
+      <label>Nom Projet</label>
+      <input type="text" name="nomProjet"
+      [(ngModel)]="projet.nomProjet"class="form-control"
+      required #p="ngModel">
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+        this field is required
+      </div>
+     <div *ngIf="p.hasError('minlength')">
+        minlength = 3 !
+     </div>
+     <div *ngIf="p.hasError('pattern')">
+       error pattern
+    </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Theme</label>
+      <input type="text" name="theme"
+      [(ngModel)]="projet.theme"class="form-control"
+      required #p="ngModel">
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+        this field is required
+      </div>
+     <div *ngIf="p.hasError('minlength')">
+        minlength = 3 !
+     </div>
+     <div *ngIf="p.hasError('pattern')">
+       error pattern
+    </div>
+    </div>
+    <label>Date debut</label>
+    <input
+      [(ngModel)]="projet.dateDeb"
+      type="date"
+      name="dateDebutProjet"
+      class="form-control"
+      required
+      #t="ngModel"
+      min="{{ mindate }}"
+      max="2024-01-01"
+    />
+    <div class="alert alert-danger" *ngIf="t.invalid && t.touched">
+      <div *ngIf="t.hasError('required')">This field is required</div>
+      <div *ngIf="t.hasError('min')">This date is invalid</div>
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label>Date fin</label>
+    <input
+      [(ngModel)]="projet.dateFin"
+      type="date"
+      name="dateFinProjet"
+      class="form-control"
+      required
+      #p="ngModel"
+    />
+    <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+      <div *ngIf="p.hasError('required')">This field is required</div>
+    </div>
+  </div>
+  <br />
+  <button class="btn btn-success" (click)="saveProjet()" [disabled]="f.invalid">
+    save
+  </button>
+  &nbsp;
+  <button type="reset" class="btn btn-warning">reset</button>
+</form>
